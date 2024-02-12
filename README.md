@@ -1,8 +1,8 @@
-# Project Name
+<img src="/assets/screenshot.png" alt="Screenshot Hero">
 
-Replace this readme with your own information about your project.
+# Chatbot for Icecream Buddy 🍦
 
-Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
+Icecream Buddy is a functional chatbot interface using JavaScript, HTML and CSS. This chatbot will interact with users, ask questions regarding icecream choices, display messages, and respond with precision.
 
 ## The problem
 
@@ -10,4 +10,4 @@ Describe how you approached to problem, and what tools and techniques you used t
 
 ## View it live
 
-Have you deployed your project somewhere? Be sure to include the link to the deployed project so that the viewer can click around and see what it's all about.
+[Chatbot - Icecream Buddy](https://technigo-project-chatbot.netlify.app)
