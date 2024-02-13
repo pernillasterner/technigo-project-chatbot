@@ -1,5 +1,11 @@
 // DOM selectors (variables that point to selected DOM elements) goes here 👇
 const chat = document.getElementById("chat");
+const nameForm = document.getElementById("name-form");
+const start = document.getElementById("start");
+
+// Hiding elements before start
+chat.style.display = "none";
+nameForm.style.display = "none";
 
 // Functions goes here 👇
 
@@ -11,7 +17,7 @@ const showMessage = (message, sender) => {
     chat.innerHTML += `
       <section class="user-msg">
         <div class="bubble user-bubble">
-          <p>{message}</p>
+          <p>${message}</p>
         </div>
         <img src="assets/user.png" alt="User" />  
       </section>
@@ -19,12 +25,11 @@ const showMessage = (message, sender) => {
     // The else if statement checks if the sender is the bot and if that's the case it inserts
     // an HTML section inside the chat with the posted message from the bot
   } else if (sender === "bot") {
-    console.log(sender);
     chat.innerHTML += `
       <section class="bot-msg">
         <img src="assets/bot.png" alt="Bot" />
         <div class="bubble bot-bubble">
-          <p>{message}</p>
+          <p>${message}</p>
         </div>
       </section>
     `;
@@ -51,4 +56,13 @@ const greetUser = () => {
 // and pass along two arguments:
 // 1.) the function we want to delay, and 2.) the delay in milliseconds
 // This means the greeting function will be called one second after the website is loaded.
-setTimeout(greetUser, 2000);
+
+const startIcecreamJourney = () => {
+  start.style.display = "none";
+  chat.style.display = "flex";
+  nameForm.style.display = "flex";
+  setTimeout(greetUser, 1000);
+};
+
+// Add eventlistener to start button
+start.addEventListener("click", startIcecreamJourney);
