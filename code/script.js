@@ -1,7 +1,5 @@
 const chat = document.getElementById("chat");
 const chatForm = document.getElementById("name-form");
-const nameInput = document.getElementById("name-input");
-const start = document.getElementById("start");
 
 // Functions goes here 👇
 
@@ -37,6 +35,10 @@ const greetUser = () => {
   showMessage("Hello there, what's your name?", "bot");
 };
 
+const typeOfSemla = (name) => {
+  showMessage(`Hello ${name}, what type of semla would you like?`, "bot");
+};
+
 // Function that handles all types in the form
 const handleFormSubmission = () => {
   const formElements = chatForm.elements;
@@ -45,6 +47,15 @@ const handleFormSubmission = () => {
     const input = formElements[i];
 
     console.log(input);
+    if (input.type === "text") {
+      // Get value from the input
+      const name = input.value;
+      showMessage(`My name is ${name}!`, "user");
+      setTimeout(() => {
+        typeOfSemla(name);
+      }, 1000);
+      input.value = "";
+    }
   }
 };
 
