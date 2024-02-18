@@ -1,24 +1,53 @@
+// import pastriesData from "./data.json";
+
+// Constants
 const chat = document.getElementById("chat");
 const chatForm = document.getElementById("name-form");
 const nameForm = document.getElementById("name-form");
+const currentYear = new Date().getFullYear();
+document.getElementById("currentYear").textContent = currentYear;
 
-const semlaTypes = [
-  { id: "regular", label: "Regular", value: "regular", name: "semla_choiced" },
+// Access the array of pastries
+const typeOfPastery = [
+  {
+    id: "regular",
+    label: "Regular",
+    value: "regular",
+    name: "type_of_pastery",
+  },
   {
     id: "gluten",
     label: "Gluten free",
     value: "gluten",
-    name: "semla_choiced",
+    name: "type_of_pastery",
   },
   {
     id: "lactose",
     label: "Lactose free",
     value: "lactose",
-    name: "semla_choiced",
+    name: "type_of_pastery",
   },
 ];
 
-// Functions goes here 👇
+const subtypeOfPastery = [
+  {
+    id: "blueberry",
+    label: "Blueberry",
+    class: "choice-btn",
+  },
+  {
+    id: "vanilla",
+    label: "Vanilla",
+    class: "choice-btn",
+  },
+  {
+    id: "chocolate",
+    label: "Chocolate",
+    class: "choice-btn",
+  },
+];
+
+// Functions 👇
 
 // A function that will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
@@ -47,12 +76,12 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight;
 };
 
-// INTERACTIONS
+// A function that greets the user
 const greetUser = () => {
   showMessage("Hello there, what's your name?", "bot");
 };
 
-const typeOfSemla = (name) => {
+const askForType = (name) => {
   showMessage(`Hello ${name}, what type of semla would you like?`, "bot");
 
   // Remove the children in the form = diplay: none
@@ -60,20 +89,47 @@ const typeOfSemla = (name) => {
     chatForm.removeChild(chatForm.firstChild);
   }
 
-  createRadioButtons(semlaTypes);
+  createRadioButtons(typeOfPastery);
 };
 
-// CREATE INPUT TYPES
-const createRadioButtons = (obj) => {
+const askForSubType = () => {
+  console.log("test");
+};
+
+const createRadioButtons = (data) => {
   // Create radio buttons
-  obj.forEach((el) => {
+  data.forEach((item) => {
     nameForm.innerHTML += `
-     <input type="radio" name="${el.name}" id="${el.id}" value="${el.value}"/><label>${el.label}</label>
+     <input type="radio" name="${item.name}" id="${item.id}" value="${item.value}"/><label>${item.label}</label>
     `;
+  });
+
+  handletypeOfPastery();
+};
+
+const handletypeOfPastery = () => {
+  // We store all radio btns in a variable
+  const radioButtons = document.querySelectorAll(
+    'input[name="type_of_pastery"]'
+  );
+
+  // Add event listener to all radio buttons
+  radioButtons.forEach((button) => {
+    button.addEventListener("change", () => {
+      showMessage(`I choose ${button.value} free`, "user");
+      setTimeout(() => {
+        showMessage(
+          `Nice choice! You chose a ${button.value} ${
+            button.value !== "regular" ? "free" : ""
+          } semla.\n Please choose what flavour you want`,
+          "bot"
+        );
+      }, 1000);
+      askForSubType();
+    });
   });
 };
 
-// SUBMISSION
 // Function that handles all types in the form
 const handleFormSubmission = () => {
   const formElements = chatForm.elements;
@@ -87,7 +143,7 @@ const handleFormSubmission = () => {
       const name = input.value;
       showMessage(`My name is ${name}!`, "user");
       setTimeout(() => {
-        typeOfSemla(name);
+        askForType(name);
       }, 1000);
       input.value = "";
     } else if (input.type === "radio") {
@@ -98,9 +154,11 @@ const handleFormSubmission = () => {
   }
 };
 
-// Eventlisteners goes here 👇
+// Event Listeners 👇
 chatForm.addEventListener("submit", (e) => {
   e.preventDefault();
   handleFormSubmission();
 });
+
+// Inital
 setTimeout(greetUser, 1000);
