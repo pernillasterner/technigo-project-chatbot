@@ -60,6 +60,10 @@ input:focus-visible {
   outline: 1px solid black;
 }
 
+/* input[type="radio"] {
+  
+} */
+
 main {
   margin: 0 auto;
   display: flex;

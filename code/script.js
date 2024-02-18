@@ -48,6 +48,11 @@ const subtypeOfPastery = [
 ];
 
 // Functions 👇
+const clearNameForm = () => {
+  while (nameForm.firstChild) {
+    nameForm.removeChild(nameForm.firstChild);
+  }
+};
 
 // A function that will add a chat bubble in the correct place based on who the sender is
 const showMessage = (message, sender) => {
@@ -85,18 +90,13 @@ const askForType = (name) => {
   showMessage(`Hello ${name}, what type of semla would you like?`, "bot");
 
   // Remove the children in the form = diplay: none
-  while (chatForm.firstChild) {
-    chatForm.removeChild(chatForm.firstChild);
-  }
+  clearNameForm();
 
   createRadioButtons(typeOfPastery);
 };
 
-const askForSubType = () => {
-  console.log("test");
-};
-
 const createRadioButtons = (data) => {
+  clearNameForm();
   // Create radio buttons
   data.forEach((item) => {
     nameForm.innerHTML += `
@@ -105,6 +105,22 @@ const createRadioButtons = (data) => {
   });
 
   handletypeOfPastery();
+};
+
+const createButtons = (data) => {
+  clearNameForm();
+  // Buttons from choice
+  data.forEach((item) => {
+    nameForm.innerHTML += `
+    <button id="${item.id}" type="submit" class="${item.class}">${item.label}</button>
+    `;
+  });
+
+  const buttons = document.querySelectorAll(".choice-btn");
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", (e) => handletypeOfFlavor(e));
+  });
 };
 
 const handletypeOfPastery = () => {
@@ -125,9 +141,22 @@ const handletypeOfPastery = () => {
           "bot"
         );
       }, 1000);
-      askForSubType();
+      setTimeout(() => createButtons(subtypeOfPastery), 1000);
     });
   });
+};
+
+const handletypeOfFlavor = (e) => {
+  const flavor = e.target.textContent;
+  showMessage(`I choose ${flavor}`, "user");
+
+  setTimeout(() => {
+    showMessage(
+      `Yummy, ${flavor} is a great choice!\nWould you like a coffee with that?`,
+      "bot"
+    );
+  }, 1000);
+  setTimeout(coffeChoice, 1000);
 };
 
 // Function that handles all types in the form
