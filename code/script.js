@@ -1,5 +1,5 @@
 const chat = document.getElementById("chat");
-const nameForm = document.getElementById("name-form");
+const chatForm = document.getElementById("name-form");
 const nameInput = document.getElementById("name-input");
 const start = document.getElementById("start");
 
@@ -37,25 +37,20 @@ const greetUser = () => {
   showMessage("Hello there, what's your name?", "bot");
 };
 
-const handleNameInput = (event) => {
-  event.preventDefault();
+// Function that handles all types in the form
+const handleFormSubmission = () => {
+  const formElements = chatForm.elements;
 
-  const name = nameInput.value;
-  showMessage(name, "user");
-  console.log(name);
-};
+  for (let i = 0; i < formElements.length; i++) {
+    const input = formElements[i];
 
-// A function to display form when button gets clicked on
-const startIcecreamJourney = () => {
-  start.style.display = "none";
-  chat.style.display = "flex";
-  nameForm.style.display = "flex";
-  setTimeout(greetUser, 1000);
+    console.log(input);
+  }
 };
 
 // Eventlisteners goes here 👇
-
+chatForm.addEventListener("submit", (e) => {
+  e.preventDefault();
+  handleFormSubmission();
+});
 setTimeout(greetUser, 1000);
-
-// Add eventlistener to start button
-start.addEventListener("click", startIcecreamJourney);
