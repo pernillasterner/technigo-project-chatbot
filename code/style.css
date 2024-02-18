@@ -1,22 +1,27 @@
-@import url("https://fonts.googleapis.com/css2?family=Cousine:ital,wght@0,400;0,700;1,400;1,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap");
 
 * {
   box-sizing: border-box;
 }
 
+audio {
+  display: none;
+}
 body {
-  margin: 0;
+  height: 100vh;
+  margin: 20px;
   padding: 0;
-  font-family: "Cousine", sans-serif;
-  background: linear-gradient(to bottom right, #eae69c, #d0ebc0);
-  color: #000;
-  min-height: 100vh;
+  font-family: "Montserrat", sans-serif;
+  background: #decbbc;
 }
 
 h1 {
+  font-family: "PT Sans Narrow", sans-serif;
+  margin: 0;
   font-weight: bold;
-  font-size: 28px;
-  line-height: 34px;
+  font-size: 200px;
+  /* line-height: 34px; */
+  color: #000;
   text-align: center;
 }
 
@@ -24,6 +29,7 @@ h2 {
   font-weight: bold;
   font-size: 24px;
   line-height: 34px;
+  color: #fff;
   text-align: center;
   margin-bottom: 36px;
 }
@@ -39,19 +45,48 @@ input {
   box-sizing: border-box;
   border: none;
   border-radius: 4px 0 0 4px;
-  background: #e5e9ff;
-  color: #92da9b;
+  background: #eee;
+  color: #000;
   padding: 16px;
   font-size: 16px;
-  font-family: "Cousine";
+  font-family: "Montserrat";
   font-weight: 600;
   line-height: 26px;
   flex: 1;
   width: 100%;
 }
 
+input:focus-visible {
+  outline: 1px solid black;
+}
+
 main {
   margin: 0 auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.intro {
+  width: 50%;
+  display: flex;
+  align-self: end;
+  position: relative;
+  justify-content: center;
+  margin-right: 20px;
+}
+
+.circle {
+  background-image: url("./assets/circle.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  position: absolute;
+  top: -200px;
+  right: 200px;
+  height: 200px;
+  width: 200px;
+}
+
+.chat-container {
   width: 100%;
   max-width: 700px;
   height: 600px;
@@ -62,16 +97,7 @@ main {
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  position: relative;
-}
-
-.start {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  padding: 2em;
-  font-size: 1.5rem;
+  justify-content: left;
 }
 
 .chat {
@@ -103,7 +129,7 @@ main {
 }
 
 .bubble {
-  background: #92d99a42;
+  background: #eee;
   font-weight: 600;
   font-size: 16px;
   line-height: 26px;
@@ -125,8 +151,6 @@ main {
 .input-wrapper {
   display: flex;
   justify-content: center;
-  /* align-items: center;
-  height: 100%; */
 }
 
 .input-wrapper form {
@@ -137,28 +161,94 @@ main {
 
 label {
   font-size: 16px;
-  font-family: "Cousine";
+  font-family: "Montserrat";
   font-weight: 500;
-  color: #92da9b;
+  color: #000;
   margin-right: 20px;
 }
 
 button {
-  background-color: #92da9b;
-  color: #000;
-  border: 1px solid #000;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
   padding: 16px 20px;
   margin-right: 4px;
   font-size: 16px;
   line-height: 26px;
-  font-family: "Cousine";
+  font-family: "Montserrat";
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 4px 8px #000;
 }
 
 button:hover {
   opacity: 0.9;
   transition: all 0.2s ease;
+  background-color: #202020;
+}
+
+footer {
+  margin-top: 20px;
+  border-top: 3px solid #000;
+  display: flex;
+  flex-direction: column;
+}
+
+footer .info {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: top;
+  width: 100%;
+  height: 70px;
+}
+
+footer .copyright a {
+  color: #000;
+}
+
+footer .inspiration {
+  background-color: black;
+  min-height: 500px;
+  height: auto;
+  width: 100%;
+  background-image: url("./assets/semla.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 25% 75%;
+}
+
+#messageSound {
+  display: none;
+}
+
+@media screen and (max-width: 1170px) {
+  h1 {
+    transform: rotate(270deg);
+  }
+
+  .intro {
+    transform: translate(20%, -50%);
+    width: 25%;
+  }
+
+  .circle {
+    right: 136px;
+    display: none;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  h1 {
+    transform: none;
+  }
+
+  .intro {
+    transform: none;
+    width: 100%;
+  }
+  main {
+    flex-direction: column;
+  }
 }
