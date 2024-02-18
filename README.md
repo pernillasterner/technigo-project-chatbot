@@ -1,8 +1,8 @@
 <img src="/code/assets/screenshot.png" alt="Screenshot Hero">
 
-# Chatbot for Icecream Buddy 🍦
+# Semla bot
 
-Icecream Buddy is a functional chatbot interface using JavaScript, HTML and CSS. This chatbot will interact with users, ask questions regarding icecream choices, display messages, and respond with precision.
+Semla Buddy is a functional chatbot interface using JavaScript, HTML and CSS. This chatbot will interact with users, ask questions regarding semla choices, display messages, and respond with precision.
 
 ## The problem
 
@@ -10,4 +10,4 @@ Describe how you approached to problem, and what tools and techniques you used t
 
 ## View it live
 
-[Chatbot - Icecream Buddy](https://technigo-project-chatbot.netlify.app)
+[Chatbot - Semla](https://technigo-project-chatbot.netlify.app)
