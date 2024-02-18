@@ -1,5 +1,22 @@
 const chat = document.getElementById("chat");
 const chatForm = document.getElementById("name-form");
+const nameForm = document.getElementById("name-form");
+
+const semlaTypes = [
+  { id: "regular", label: "Regular", value: "regular", name: "semla_choiced" },
+  {
+    id: "gluten",
+    label: "Gluten free",
+    value: "gluten",
+    name: "semla_choiced",
+  },
+  {
+    id: "lactose",
+    label: "Lactose free",
+    value: "lactose",
+    name: "semla_choiced",
+  },
+];
 
 // Functions goes here 👇
 
@@ -30,15 +47,33 @@ const showMessage = (message, sender) => {
   chat.scrollTop = chat.scrollHeight;
 };
 
-// A function to start the conversation
+// INTERACTIONS
 const greetUser = () => {
   showMessage("Hello there, what's your name?", "bot");
 };
 
 const typeOfSemla = (name) => {
   showMessage(`Hello ${name}, what type of semla would you like?`, "bot");
+
+  // Remove the children in the form = diplay: none
+  while (chatForm.firstChild) {
+    chatForm.removeChild(chatForm.firstChild);
+  }
+
+  createRadioButtons(semlaTypes);
 };
 
+// CREATE INPUT TYPES
+const createRadioButtons = (obj) => {
+  // Create radio buttons
+  obj.forEach((el) => {
+    nameForm.innerHTML += `
+     <input type="radio" name="${el.name}" id="${el.id}" value="${el.value}"/><label>${el.label}</label>
+    `;
+  });
+};
+
+// SUBMISSION
 // Function that handles all types in the form
 const handleFormSubmission = () => {
   const formElements = chatForm.elements;
@@ -55,6 +90,10 @@ const handleFormSubmission = () => {
         typeOfSemla(name);
       }, 1000);
       input.value = "";
+    } else if (input.type === "radio") {
+      console.log("radio button");
+    } else {
+      console.log("perhaps select of button");
     }
   }
 };
